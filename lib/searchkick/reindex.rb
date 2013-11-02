@@ -97,12 +97,12 @@ module Searchkick
             searchkick_search: {
               type: "custom",
               tokenizer: "standard",
-              filter: ["standard", "lowercase", "asciifolding", "stop", "searchkick_search_shingle", "snowball"]
+              filter: ["standard", "lowercase", "asciifolding", "stop", "searchkick_search_shingle", "snowball", "searchkick_ngram"]
             },
             searchkick_search2: {
               type: "custom",
               tokenizer: "standard",
-              filter: ["standard", "lowercase", "asciifolding", "stop", "snowball"]
+              filter: ["standard", "lowercase", "asciifolding", "stop", "snowball", "searchkick_ngram"]
             },
             # https://github.com/leschenko/elasticsearch_autocomplete/blob/master/lib/elasticsearch_autocomplete/analyzers.rb
             searchkick_autocomplete_index: {
@@ -122,6 +122,11 @@ module Searchkick
             }
           },
           filter: {
+            :searchkick_ngram  => {
+              type:     => "nGram",
+              max_gram: => 5,
+              min_gram: => 3
+            },
             searchkick_index_shingle: {
               type: "shingle",
               token_separator: ""
