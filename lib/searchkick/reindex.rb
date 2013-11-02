@@ -122,10 +122,10 @@ module Searchkick
             }
           },
           filter: {
-            :searchkick_ngram  => {
-              type:     => "nGram",
-              max_gram: => 5,
-              min_gram: => 3
+            searchkick_ngram: {
+              type: "nGram",
+              max_gram: 5,
+              min_gram: 3
             },
             searchkick_index_shingle: {
               type: "shingle",
